@@ -25,4 +25,12 @@ print(a**b) -> Calculate the power
 |F|F|T|
 |F|F|F|
 
-
+### Function
+block of code that perform a specific task 
+it has two part 
+* defination -> where written the logic what is actually do 
+* call -> when it is invoked 
+>> Two types of parameters 
+1. non default parameter
+2. defualt parameter
+always first write the no default parameter then default parameter
