@@ -34,3 +34,14 @@ it has two part
 1. non default parameter
 2. defualt parameter
 always first write the no default parameter then default parameter
+
+### Tuples
+1. tuples are immutable
+2. we cannot create single value tuple. in python, compiler read single value tuple as a expresion.
+```
+tuple = (1)
+```
+3. here the tuple act like a integer
+4. if we want to create a single value tuple, we have to write two element or extra comma.
+```
+tuple = (1,)
