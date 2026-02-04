@@ -45,3 +45,32 @@ tuple = (1)
 4. if we want to create a single value tuple, we have to write two element or extra comma.
 ```
 tuple = (1,)
+```
+### Method
+* instance, class, static  
+
+|instance|class|static|  
+|----------|----------|----------| 
+|1st parameter->self|1st parameter cls|no compolsary parameter|  
+|access the class & instance atrtibute|access class attribute|no access|  
+||decorator|decorator|  
+||@classmethod|@staticmethod||
+
+### File Operations
+* r -> reading [default]
+* w -> writing, truncate file first
+* x -> creates new & open for writing
+* a -> writing & appends at end
+* b -> binary mode
+* t -> text mode [default]
+* plus -> opens disk file for update(r & w)
+
+### JSON Module
+>> javasript object notation
+
+|json|python|  
+|--------|--------|  
+|arrays|list|
+|object|dict|
+|string|str|
+|null|None|
