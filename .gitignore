@@ -208,3 +208,5 @@ __marimo__/
 apna_college/
 6_Api/scraped_data/
 4_Pandas/IRIS.csv
+8_linear_Regression/insurance.csv
+9_logistic_Regression/heart.csv
