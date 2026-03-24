@@ -212,3 +212,7 @@ apna_college/
 9_logistic_Regression/heart.csv
 16_Anomaly_detection\thyroid.csv
 16_Anomaly_detection/thyroid.csv
+17_ANN/best_model.pt
+anaconda_projects/db/project_filebrowser.db
+17_ANN/DateFruit_Dataset.csv
+17_ANN/powerplant_data.csv
