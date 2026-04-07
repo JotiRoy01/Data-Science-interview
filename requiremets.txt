@@ -3,3 +3,5 @@ pandas
 scikit-learn
 matplotlib
 gymnasium
+flappy_bird_gymnasium
+pyyaml
