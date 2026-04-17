@@ -45,7 +45,7 @@ class Agent :
         num_states = env.observation_space.shape[0] #input dim
         num_actions = env.action_space.n # output dim
 
-        policy_dqp = DQN(num_states, num_actions).to(device)
+        policy_dqn = DQN(num_states, num_actions).to(device)
 
         state, _ = env.reset()
 
@@ -53,9 +53,18 @@ class Agent :
             memory = ReplayMemory(self.replay_memory_size)
             epsilon = self.epsilon_init
 
+            target_dqn = DQN(num_states, num_actions).to(device)
+            # copy the wt & bias vals from policy -> target
+            target_dqn.load_state_dict(policy_dqn.state_dict())
+
+            steps = 0
+
+            self.optimizer = optim.Adam(policy_dqn.parameters(), lr=self.alpha)
+
         for episode in itertools.count() :
             state, _ = env.reset()
             state = torch.tensor(state, dtype=torch.float, device = device)
+
 
             while not terminated:
                 # Next action:
@@ -75,13 +84,42 @@ class Agent :
 
                 if is_traning :
                     memory.append((state, action, new_state, reward, terminated))
+                    steps += 1
 
                 state = new_state
                 episode_rewards += reward
             
             print(f"for episode = {episode+1} total reward = {episode_rewards}")
 
-            # epsilon decay
-            epsilon = max(epsilon * self.epsilon_decay, self.epsilon_min)
+            if is_training :
+                # epsilon decay
+                epsilon = max(epsilon * self.epsilon_decay, self.epsilon_min)
+            
+            if is_traning and len(memory) > self.mini_batch_size :
+                # get sample
+                mini_batch = memory.sample(self.mini_batch_size)
+                optimizer(mini_batch, policy_dqn, target_dqn)
 
+            # sync the network
+            if steps > self.network_sync_rate :
+                target_dqn.load_state_dict(policy_dqn.state_dict())
+                steps = 0
         #env.close() -> commented beacuse we want to manually stop
+    
+    def optimize(self, mini_batch, policy_dqn, target_dqn) :
+        # get experience
+        for state, action, next_state, reward, terminated in mini_batch :
+            if terminated :
+                target = reward
+            else :
+                with torch.no_grad() :
+                    target_q = reward + self.gamma * target_dqn(next_state).max()
+
+            current_q = policy_dqn(state)
+
+            # loss
+            loss = self.loss_fn(current_q, target_q)
+            self.optimizer.zero_grad()
+            loss.backward()
+            self.optimizer.step()
+            

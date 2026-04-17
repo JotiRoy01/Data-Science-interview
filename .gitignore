@@ -218,3 +218,6 @@ anaconda_projects/db/project_filebrowser.db
 17_ANN/powerplant_data.csv
 18_CNN/data
 19_RNN/IMDB Dataset.csv
+21_RAG/data/Rechearch_Paper.pdf
+21_RAG/data/file.txt
+21_RAG/data/vector_store/chroma.sqlite3

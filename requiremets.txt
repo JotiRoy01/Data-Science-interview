@@ -5,3 +5,8 @@ matplotlib
 gymnasium
 flappy_bird_gymnasium
 pyyaml
+langchain
+langchain-core
+langchain-community
+pypdf
+pymupdf
