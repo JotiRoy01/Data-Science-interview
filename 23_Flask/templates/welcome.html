@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welcome Page</title>
+</head>
+<body>
+    {{header | safe}}
+    <h1>Welcome back {{name}}</h1>
+
+    {% if name == "Alice" %}
+        <p>Welcome, Alice! You have admin access.</p>
+    {% elif name == "Bob" %}
+        <p>Welcome, Bob! You have user access.</p>
+    {% else %}
+        <p>Welcome, {{name}}! You have guest access.</p>
+    {% endif %}
+
+    <ul>
+        {%% for friend in friends %%}
+            <li>{{friend}}</li>
+        {%% endfor %%}
+    </ul>
+</body>
+</html>

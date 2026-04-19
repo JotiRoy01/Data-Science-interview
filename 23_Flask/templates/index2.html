@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <h1>Index</h1>
+  <p class="important">
+    Welcome on my awesome homepage.
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+
+  {% endif %}
+{% endwith %}
+{% endblock %}
